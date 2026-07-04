@@ -23,19 +23,11 @@
     overflow-x:hidden;
     min-height:100%;
   }
-  body{
-    position:relative;
-  }
+  body{ position:relative; }
 
-  /* ---------- confetti ---------- */
   .confetti{
-    position:fixed;
-    top:-20px;
-    width:10px;
-    height:16px;
-    opacity:0.9;
-    z-index:5;
-    pointer-events:none;
+    position:fixed; top:-20px; width:10px; height:16px;
+    opacity:0.9; z-index:5; pointer-events:none;
     animation: fall linear infinite;
   }
   @keyframes fall{
@@ -47,35 +39,20 @@
     .balloon{ animation: none !important; }
   }
 
-  /* ---------- hero ---------- */
   .hero{
-    position:relative;
-    min-height:100vh;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    padding: 40px 20px 100px;
-    overflow:hidden;
+    position:relative; min-height:100vh; display:flex;
+    flex-direction:column; align-items:center; justify-content:center;
+    text-align:center; padding: 40px 20px 100px; overflow:hidden;
   }
   .eyebrow{
-    font-family:'Baloo 2', sans-serif;
-    font-weight:700;
-    letter-spacing:2px;
-    color:var(--violet);
-    font-size:clamp(14px,2vw,18px);
-    margin-bottom:10px;
+    font-family:'Baloo 2', sans-serif; font-weight:700; letter-spacing:2px;
+    color:var(--violet); font-size:clamp(14px,2vw,18px); margin-bottom:10px;
   }
   .hero h1{
-    font-family:'Baloo 2', sans-serif;
-    font-weight:800;
-    font-size:clamp(56px, 14vw, 130px);
-    line-height:1.05;
+    font-family:'Baloo 2', sans-serif; font-weight:800;
+    font-size:clamp(56px, 14vw, 130px); line-height:1.05;
     background: linear-gradient(90deg, var(--pink), var(--violet) 50%, var(--sky));
-    -webkit-background-clip:text;
-    background-clip:text;
-    color:transparent;
+    -webkit-background-clip:text; background-clip:text; color:transparent;
     animation: wiggle 3.5s ease-in-out infinite;
     filter: drop-shadow(0 6px 0 rgba(59,30,61,0.08));
   }
@@ -83,34 +60,17 @@
     0%,100%{ transform: rotate(-1.5deg); }
     50%{ transform: rotate(1.5deg); }
   }
-  .hero p.sub{
-    font-size:clamp(18px,3vw,26px);
-    font-weight:500;
-    margin-top:18px;
-    color:var(--plum);
-  }
+  .hero p.sub{ font-size:clamp(18px,3vw,26px); font-weight:500; margin-top:18px; color:var(--plum); }
 
-  .balloons{
-    position:absolute;
-    inset:0;
-    pointer-events:none;
-  }
+  .balloons{ position:absolute; inset:0; pointer-events:none; }
   .balloon{
-    position:absolute;
-    bottom:-140px;
-    width:60px;
-    height:76px;
+    position:absolute; bottom:-140px; width:60px; height:76px;
     border-radius:50% 50% 50% 50% / 55% 55% 45% 45%;
     animation: rise 9s ease-in infinite;
   }
   .balloon::after{
-    content:"";
-    position:absolute;
-    bottom:-40px;
-    left:50%;
-    width:1px;
-    height:40px;
-    background: rgba(59,30,61,0.25);
+    content:""; position:absolute; bottom:-40px; left:50%;
+    width:1px; height:40px; background: rgba(59,30,61,0.25);
   }
   @keyframes rise{
     0%{ transform: translateY(0) translateX(0); opacity:0; }
@@ -118,66 +78,28 @@
     100%{ transform: translateY(-115vh) translateX(20px); opacity:1; }
   }
 
-  /* ---------- message section ---------- */
-  .message{
-    max-width:720px;
-    margin: 0 auto;
-    padding: 20px 24px 120px;
-    position:relative;
-    z-index:2;
-  }
+  .message{ max-width:720px; margin: 0 auto; padding: 20px 24px 120px; position:relative; z-index:2; }
   .card{
-    background:#fff;
-    border-radius:28px;
-    padding: clamp(28px, 6vw, 56px);
+    background:#fff; border-radius:28px; padding: clamp(28px, 6vw, 56px);
     box-shadow: 0 24px 60px -20px rgba(155,93,229,0.35);
-    border: 3px solid var(--yellow);
-    position:relative;
+    border: 3px solid var(--yellow); position:relative;
   }
-  .card::before{
-    content:"🎂";
-    position:absolute;
-    top:-34px;
-    right:calc(50% - 34px);
-    font-size:44px;
-    background:var(--cream);
-    width:68px;
-    height:68px;
-    border-radius:50%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    border:3px solid var(--yellow);
+  .cake-wrap{
+    position:absolute; top:-70px; right:calc(50% - 58px); width:116px;
+    filter: drop-shadow(0 10px 16px rgba(155,93,229,0.35));
   }
   .card h2{
-    font-family:'Baloo 2', sans-serif;
-    font-size:clamp(24px,4vw,34px);
-    color:var(--pink);
-    margin-top:12px;
-    margin-bottom:20px;
-    text-align:center;
+    font-family:'Baloo 2', sans-serif; font-size:clamp(24px,4vw,34px);
+    color:var(--pink); margin-top:12px; margin-bottom:20px; text-align:center;
   }
-  .card p{
-    font-size:clamp(17px,2.2vw,20px);
-    line-height:2;
-    color:var(--plum);
-  }
+  .card p{ font-size:clamp(17px,2.2vw,20px); line-height:2; color:var(--plum); }
   .card p + p{ margin-top:16px; }
   .signoff{
-    margin-top:28px;
-    text-align:left;
-    font-family:'Baloo 2', sans-serif;
-    font-weight:700;
-    color:var(--violet);
-    font-size:20px;
+    margin-top:28px; text-align:left; font-family:'Baloo 2', sans-serif;
+    font-weight:700; color:var(--violet); font-size:20px;
   }
 
-  .footer-note{
-    text-align:center;
-    padding: 0 20px 60px;
-    color: rgba(59,30,61,0.55);
-    font-size:14px;
-  }
+  .footer-note{ text-align:center; padding: 0 20px 60px; color: rgba(59,30,61,0.55); font-size:14px; }
 
   @media (max-width:480px){
     .hero{ padding-bottom:70px; }
@@ -193,23 +115,33 @@
   <div class="balloons" id="balloons"></div>
   <div class="eyebrow">حفلة عيد ميلاد</div>
   <h1>كوثر</h1>
-  <p class="sub">عام جديد حلو، وإحنا كتير مبسوطين فيكِ 💛</p>
+  <p class="sub">عام جديد حلو، وأنا كتير مبسوطة فيكِ 💛</p>
 </section>
 
 <section class="message">
   <div class="card">
+    <svg class="cake-wrap" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" role="img">
+      <title>كيكة عيد ميلاد برقم 28</title>
+      <ellipse cx="60" cy="102" rx="46" ry="10" fill="#FFC93C"/>
+      <rect x="18" y="78" width="84" height="26" rx="6" fill="#FF4D8D"/>
+      <rect x="18" y="78" width="84" height="8" rx="4" fill="#fff" opacity="0.35"/>
+      <rect x="24" y="54" width="72" height="26" rx="6" fill="#42C6FF"/>
+      <rect x="24" y="54" width="72" height="8" rx="4" fill="#fff" opacity="0.35"/>
+      <rect x="53" y="30" width="14" height="26" rx="3" fill="#FFF8ED" stroke="#9B5DE5" stroke-width="2"/>
+      <path d="M60 30 C58 25 62 22 60 16 C58 22 63 24 60 30 Z" fill="#FFC93C"/>
+      <text x="60" y="72" text-anchor="middle" font-family="Baloo 2, sans-serif" font-weight="800" font-size="20" fill="#3B1E3D">28</text>
+    </svg>
     <h2>كل سنة وانتِ طيبة يا كوثر</h2>
-    <p>ما في كلام كافي يوصف قديش انتِ شخص حلو ومميز بحياتنا. ضحكتك بتنور المكان، وقلبك الطيب بيخلي كل يوم معك أجمل.</p>
-    <p>اليوم منحتفل فيكِ انتِ، بكل التفاصيل الحلوة يلي فيكِ، وبكل سنة جديدة رح تجيبلك فرح أكتر ونجاح أكتر وضحك أكتر.</p>
-    <p>عقبال ما نضل نحتفل فيكِ كل سنة، وانتِ دايمًا محاطة بناس بتحبك زي ما إحنا منحبك. 🎈</p>
-    <div class="signoff">بنحبك كتير، كل سنة وانتِ سالمة 💕</div>
+    <p>ما في كلام كافي يوصف قديش إنتِ شخص حلو ومميز بحياتي. ضحكتك بتنور المكان، وقلبك الطيب بيخلي كل يوم معك أجمل.</p>
+    <p>اليوم عم احتفل فيكِ انتِ، بكل التفاصيل الحلوة يلي فيكِ، وبال٢٨ هاي بتمناتلك فرح أكتر ونجاح أكتر وضحك أكتر.</p>
+    <p>عقبال ما اضل احتفل فيكِ كل سنة، وانتِ دايمًا محاطة بناس بتحبك زي ما أنا بحبك. 🎈</p>
+    <div class="signoff">بحبك كتير، كل سنة وانتِ سالمة 💕</div>
   </div>
 </section>
 
 <p class="footer-note">صُنع بمحبة لأجلك 🎉</p>
 
 <script>
-  // Confetti generator
   const colors = ['#FF4D8D', '#FFC93C', '#42C6FF', '#9B5DE5', '#FF9F1C'];
   const confettiContainer = document.getElementById('confetti-container');
   const confettiCount = window.innerWidth < 500 ? 35 : 60;
@@ -226,7 +158,6 @@
     confettiContainer.appendChild(el);
   }
 
-  // Balloons
   const balloonColors = ['#FF4D8D', '#42C6FF', '#9B5DE5', '#FFC93C', '#FF9F1C'];
   const balloonsWrap = document.getElementById('balloons');
   const balloonCount = window.innerWidth < 500 ? 5 : 8;
