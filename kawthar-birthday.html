@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>عيد ميلادك سعيد يا كوثر 🎉</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --pink:#FF4D8D;
+    --yellow:#FFC93C;
+    --sky:#42C6FF;
+    --violet:#9B5DE5;
+    --cream:#FFF8ED;
+    --plum:#3B1E3D;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html,body{
+    background:var(--cream);
+    color:var(--plum);
+    font-family:'Tajawal', sans-serif;
+    overflow-x:hidden;
+    min-height:100%;
+  }
+  body{
+    position:relative;
+  }
+
+  /* ---------- confetti ---------- */
+  .confetti{
+    position:fixed;
+    top:-20px;
+    width:10px;
+    height:16px;
+    opacity:0.9;
+    z-index:5;
+    pointer-events:none;
+    animation: fall linear infinite;
+  }
+  @keyframes fall{
+    0%{ transform: translateY(0) rotate(0deg); }
+    100%{ transform: translateY(110vh) rotate(540deg); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .confetti{ animation: none; display:none; }
+    .balloon{ animation: none !important; }
+  }
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding: 40px 20px 100px;
+    overflow:hidden;
+  }
+  .eyebrow{
+    font-family:'Baloo 2', sans-serif;
+    font-weight:700;
+    letter-spacing:2px;
+    color:var(--violet);
+    font-size:clamp(14px,2vw,18px);
+    margin-bottom:10px;
+  }
+  .hero h1{
+    font-family:'Baloo 2', sans-serif;
+    font-weight:800;
+    font-size:clamp(56px, 14vw, 130px);
+    line-height:1.05;
+    background: linear-gradient(90deg, var(--pink), var(--violet) 50%, var(--sky));
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    animation: wiggle 3.5s ease-in-out infinite;
+    filter: drop-shadow(0 6px 0 rgba(59,30,61,0.08));
+  }
+  @keyframes wiggle{
+    0%,100%{ transform: rotate(-1.5deg); }
+    50%{ transform: rotate(1.5deg); }
+  }
+  .hero p.sub{
+    font-size:clamp(18px,3vw,26px);
+    font-weight:500;
+    margin-top:18px;
+    color:var(--plum);
+  }
+
+  .balloons{
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+  }
+  .balloon{
+    position:absolute;
+    bottom:-140px;
+    width:60px;
+    height:76px;
+    border-radius:50% 50% 50% 50% / 55% 55% 45% 45%;
+    animation: rise 9s ease-in infinite;
+  }
+  .balloon::after{
+    content:"";
+    position:absolute;
+    bottom:-40px;
+    left:50%;
+    width:1px;
+    height:40px;
+    background: rgba(59,30,61,0.25);
+  }
+  @keyframes rise{
+    0%{ transform: translateY(0) translateX(0); opacity:0; }
+    8%{ opacity:1; }
+    100%{ transform: translateY(-115vh) translateX(20px); opacity:1; }
+  }
+
+  /* ---------- message section ---------- */
+  .message{
+    max-width:720px;
+    margin: 0 auto;
+    padding: 20px 24px 120px;
+    position:relative;
+    z-index:2;
+  }
+  .card{
+    background:#fff;
+    border-radius:28px;
+    padding: clamp(28px, 6vw, 56px);
+    box-shadow: 0 24px 60px -20px rgba(155,93,229,0.35);
+    border: 3px solid var(--yellow);
+    position:relative;
+  }
+  .card::before{
+    content:"🎂";
+    position:absolute;
+    top:-34px;
+    right:calc(50% - 34px);
+    font-size:44px;
+    background:var(--cream);
+    width:68px;
+    height:68px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border:3px solid var(--yellow);
+  }
+  .card h2{
+    font-family:'Baloo 2', sans-serif;
+    font-size:clamp(24px,4vw,34px);
+    color:var(--pink);
+    margin-top:12px;
+    margin-bottom:20px;
+    text-align:center;
+  }
+  .card p{
+    font-size:clamp(17px,2.2vw,20px);
+    line-height:2;
+    color:var(--plum);
+  }
+  .card p + p{ margin-top:16px; }
+  .signoff{
+    margin-top:28px;
+    text-align:left;
+    font-family:'Baloo 2', sans-serif;
+    font-weight:700;
+    color:var(--violet);
+    font-size:20px;
+  }
+
+  .footer-note{
+    text-align:center;
+    padding: 0 20px 60px;
+    color: rgba(59,30,61,0.55);
+    font-size:14px;
+  }
+
+  @media (max-width:480px){
+    .hero{ padding-bottom:70px; }
+    .card::before{ width:56px; height:56px; font-size:34px; top:-28px; right:calc(50% - 28px); }
+  }
+</style>
+</head>
+<body>
+
+<div id="confetti-container"></div>
+
+<section class="hero">
+  <div class="balloons" id="balloons"></div>
+  <div class="eyebrow">حفلة عيد ميلاد</div>
+  <h1>كوثر</h1>
+  <p class="sub">عام جديد حلو، وإحنا كتير مبسوطين فيكِ 💛</p>
+</section>
+
+<section class="message">
+  <div class="card">
+    <h2>كل سنة وانتِ طيبة يا كوثر</h2>
+    <p>ما في كلام كافي يوصف قديش انتِ شخص حلو ومميز بحياتنا. ضحكتك بتنور المكان، وقلبك الطيب بيخلي كل يوم معك أجمل.</p>
+    <p>اليوم منحتفل فيكِ انتِ، بكل التفاصيل الحلوة يلي فيكِ، وبكل سنة جديدة رح تجيبلك فرح أكتر ونجاح أكتر وضحك أكتر.</p>
+    <p>عقبال ما نضل نحتفل فيكِ كل سنة، وانتِ دايمًا محاطة بناس بتحبك زي ما إحنا منحبك. 🎈</p>
+    <div class="signoff">بنحبك كتير، كل سنة وانتِ سالمة 💕</div>
+  </div>
+</section>
+
+<p class="footer-note">صُنع بمحبة لأجلك 🎉</p>
+
+<script>
+  // Confetti generator
+  const colors = ['#FF4D8D', '#FFC93C', '#42C6FF', '#9B5DE5', '#FF9F1C'];
+  const confettiContainer = document.getElementById('confetti-container');
+  const confettiCount = window.innerWidth < 500 ? 35 : 60;
+  for(let i=0;i<confettiCount;i++){
+    const el = document.createElement('div');
+    el.className = 'confetti';
+    el.style.left = Math.random()*100 + 'vw';
+    el.style.background = colors[Math.floor(Math.random()*colors.length)];
+    el.style.animationDuration = (5 + Math.random()*6) + 's';
+    el.style.animationDelay = (Math.random()*8) + 's';
+    el.style.width = (6 + Math.random()*6) + 'px';
+    el.style.height = (10 + Math.random()*8) + 'px';
+    el.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+    confettiContainer.appendChild(el);
+  }
+
+  // Balloons
+  const balloonColors = ['#FF4D8D', '#42C6FF', '#9B5DE5', '#FFC93C', '#FF9F1C'];
+  const balloonsWrap = document.getElementById('balloons');
+  const balloonCount = window.innerWidth < 500 ? 5 : 8;
+  for(let i=0;i<balloonCount;i++){
+    const b = document.createElement('div');
+    b.className = 'balloon';
+    b.style.left = (5 + Math.random()*90) + '%';
+    b.style.background = balloonColors[Math.floor(Math.random()*balloonColors.length)];
+    b.style.animationDelay = (Math.random()*9) + 's';
+    b.style.animationDuration = (8 + Math.random()*4) + 's';
+    balloonsWrap.appendChild(b);
+  }
+</script>
+
+</body>
+</html>
