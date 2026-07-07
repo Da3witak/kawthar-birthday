@@ -3,15 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>عيد ميلادك سعيد يا كوثر 🎉</title>
+<title>عيد ميلادك سعيد يا كوكو 🎉</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Aref+Ruqaa:wght@700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --pink:#FF4D8D;
     --yellow:#FFC93C;
     --sky:#42C6FF;
     --violet:#9B5DE5;
+    --gold:#D4AF37;
+    --gold-soft:#F1D98B;
     --cream:#FFF8ED;
     --plum:#3B1E3D;
   }
@@ -25,6 +27,7 @@
   }
   body{ position:relative; }
 
+  /* ---------- confetti + sparkles ---------- */
   .confetti{
     position:fixed; top:-20px; width:10px; height:16px;
     opacity:0.9; z-index:5; pointer-events:none;
@@ -34,39 +37,87 @@
     0%{ transform: translateY(0) rotate(0deg); }
     100%{ transform: translateY(110vh) rotate(540deg); }
   }
+  .sparkle{
+    position:fixed; z-index:4; pointer-events:none;
+    color: var(--gold);
+    opacity:0;
+    animation: twinkle ease-in-out infinite;
+  }
+  @keyframes twinkle{
+    0%,100%{ opacity:0; transform:scale(0.6) rotate(0deg); }
+    50%{ opacity:0.9; transform:scale(1.15) rotate(20deg); }
+  }
   @media (prefers-reduced-motion: reduce){
-    .confetti{ animation: none; display:none; }
+    .confetti, .sparkle{ animation: none; display:none; }
     .balloon{ animation: none !important; }
   }
 
+  /* ---------- hero ---------- */
   .hero{
     position:relative; min-height:100vh; display:flex;
     flex-direction:column; align-items:center; justify-content:center;
     text-align:center; padding: 40px 20px 100px; overflow:hidden;
   }
+  .hero::before{
+    content:"";
+    position:absolute; inset:18px;
+    border: 1.5px solid var(--gold);
+    border-radius: 28px;
+    opacity:0.45;
+    pointer-events:none;
+  }
+  .hero::after{
+    content:"";
+    position:absolute; inset:30px;
+    border: 1px solid var(--gold-soft);
+    border-radius: 22px;
+    opacity:0.3;
+    pointer-events:none;
+  }
   .eyebrow{
-    font-family:'Baloo 2', sans-serif; font-weight:700; letter-spacing:2px;
-    color:var(--violet); font-size:clamp(14px,2vw,18px); margin-bottom:10px;
+    font-family:'Baloo 2', sans-serif; font-weight:700; letter-spacing:3px;
+    color:var(--violet); font-size:clamp(14px,2vw,18px); margin-bottom:14px;
+    position:relative; z-index:2;
+  }
+  .eyebrow::before, .eyebrow::after{
+    content:"✦";
+    color:var(--gold);
+    margin: 0 10px;
+    font-size:12px;
+    vertical-align:middle;
   }
   .hero h1{
     font-family:'Baloo 2', sans-serif; font-weight:800;
-    font-size:clamp(56px, 14vw, 130px); line-height:1.05;
-    background: linear-gradient(90deg, var(--pink), var(--violet) 50%, var(--sky));
+    font-size:clamp(52px, 13vw, 118px); line-height:1.1;
+    background: linear-gradient(90deg, var(--pink), var(--violet) 45%, var(--sky), var(--gold) 100%);
+    background-size: 200% auto;
     -webkit-background-clip:text; background-clip:text; color:transparent;
-    animation: wiggle 3.5s ease-in-out infinite;
+    animation: wiggle 3.5s ease-in-out infinite, shimmer 5s linear infinite;
     filter: drop-shadow(0 6px 0 rgba(59,30,61,0.08));
+    position:relative; z-index:2;
   }
   @keyframes wiggle{
     0%,100%{ transform: rotate(-1.5deg); }
     50%{ transform: rotate(1.5deg); }
   }
-  .hero p.sub{ font-size:clamp(18px,3vw,26px); font-weight:500; margin-top:18px; color:var(--plum); }
+  @keyframes shimmer{
+    0%{ background-position: 0% center; }
+    100%{ background-position: 200% center; }
+  }
+  .hero p.sub{
+    font-family:'Baloo 2', sans-serif;
+    letter-spacing:4px;
+    font-size:clamp(16px,2.6vw,22px); font-weight:600; margin-top:16px;
+    color:var(--gold);
+    position:relative; z-index:2;
+  }
 
   .balloons{ position:absolute; inset:0; pointer-events:none; }
   .balloon{
     position:absolute; bottom:-140px; width:60px; height:76px;
     border-radius:50% 50% 50% 50% / 55% 55% 45% 45%;
     animation: rise 9s ease-in infinite;
+    box-shadow: inset -8px -10px 14px rgba(0,0,0,0.12), inset 6px 8px 10px rgba(255,255,255,0.25);
   }
   .balloon::after{
     content:""; position:absolute; bottom:-40px; left:50%;
@@ -78,50 +129,85 @@
     100%{ transform: translateY(-115vh) translateX(20px); opacity:1; }
   }
 
+  /* ---------- message section ---------- */
   .message{ max-width:720px; margin: 0 auto; padding: 20px 24px 120px; position:relative; z-index:2; }
   .card{
-    background:#fff; border-radius:28px; padding: clamp(28px, 6vw, 56px);
-    box-shadow: 0 24px 60px -20px rgba(155,93,229,0.35);
-    border: 3px solid var(--yellow); position:relative;
+    background:#fff;
+    border-radius:28px;
+    padding: clamp(32px, 6vw, 60px);
+    box-shadow: 0 24px 60px -20px rgba(155,93,229,0.35), 0 0 0 1px rgba(212,175,55,0.15);
+    border: 3px solid var(--gold);
+    position:relative;
   }
+  .card::before, .card::after{
+    content:"❖";
+    position:absolute;
+    color: var(--gold);
+    font-size:16px;
+    opacity:0.6;
+  }
+  .card::before{ top:16px; right:20px; }
+  .card::after{ bottom:16px; left:20px; }
+
   .cake-wrap{
     position:absolute; top:-70px; right:calc(50% - 58px); width:116px;
     filter: drop-shadow(0 10px 16px rgba(155,93,229,0.35));
   }
   .card h2{
-    font-family:'Baloo 2', sans-serif; font-size:clamp(24px,4vw,34px);
-    color:var(--pink); margin-top:12px; margin-bottom:20px; text-align:center;
+    font-family:'Aref Ruqaa', serif;
+    font-size:clamp(26px,4.4vw,38px);
+    color:var(--pink); margin-top:20px; margin-bottom:8px; text-align:center;
   }
-  .card p{ font-size:clamp(17px,2.2vw,20px); line-height:2; color:var(--plum); }
-  .card p + p{ margin-top:16px; }
+  .title-divider{
+    display:flex; align-items:center; justify-content:center; gap:10px;
+    margin-bottom:22px;
+  }
+  .title-divider span{
+    height:1px; width:60px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+  .title-divider i{ color:var(--gold); font-style:normal; font-size:14px; }
+
+  .card p{ font-size:clamp(17px,2.2vw,20px); line-height:2; color:var(--plum); text-align:center; }
+  .card p + p{ margin-top:14px; }
   .signoff{
-    margin-top:28px; text-align:left; font-family:'Baloo 2', sans-serif;
-    font-weight:700; color:var(--violet); font-size:20px;
+    margin-top:30px;
+    padding-top:22px;
+    border-top: 1px dashed rgba(212,175,55,0.5);
+    text-align:center;
+    font-family:'Baloo 2', sans-serif;
+    font-weight:700;
+    color:var(--violet);
+    font-size:21px;
   }
 
-  .footer-note{ text-align:center; padding: 0 20px 60px; color: rgba(59,30,61,0.55); font-size:14px; }
+  .footer-note{
+    text-align:center; padding: 0 20px 60px;
+    color: rgba(59,30,61,0.5); font-size:13px; letter-spacing:1px;
+  }
 
   @media (max-width:480px){
     .hero{ padding-bottom:70px; }
-    .card::before{ width:56px; height:56px; font-size:34px; top:-28px; right:calc(50% - 28px); }
+    .cake-wrap{ width:96px; top:-58px; right:calc(50% - 48px); }
   }
 </style>
 </head>
 <body>
 
 <div id="confetti-container"></div>
+<div id="sparkle-container"></div>
 
 <section class="hero">
   <div class="balloons" id="balloons"></div>
-  <!-- <div></div class="eyebrow"> ميلاد ام مسك</div> -->
-  <h1> ميلاد ام مسك</h1>
-  <p class="sub"> HAPPY BIRTHDAY </p>
+  <div class="eyebrow">كل عام وانتي بالف خير ام مسك الغالية  </div>
+  <!-- <h1>كوكو</h1> -->
+  <p class="sub">HAPPY BIRTHDAY</p>
 </section>
 
 <section class="message">
   <div class="card">
     <svg class="cake-wrap" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" role="img">
-      <title>كيكة عيد ميلاد برقم 28</title>
+      <title>كيكة عيد ميلاد</title>
       <ellipse cx="60" cy="102" rx="46" ry="10" fill="#FFC93C"/>
       <rect x="18" y="78" width="84" height="26" rx="6" fill="#FF4D8D"/>
       <rect x="18" y="78" width="84" height="8" rx="4" fill="#fff" opacity="0.35"/>
@@ -131,17 +217,24 @@
       <path d="M60 30 C58 25 62 22 60 16 C58 22 63 24 60 30 Z" fill="#FFC93C"/>
       <text x="60" y="72" text-anchor="middle" font-family="Baloo 2, sans-serif" font-weight="800" font-size="20" fill="#3B1E3D">28</text>
     </svg>
-    <h2>كل عام وانتي بالف خير كوكو</h2>
-    <p>اختي وحبيبة قلبي كل عام وانتي بخير ومحققة كل اشي ببالك</p>
-    <p>سنين السعادة ترافقك دربك انتي وعيلتك الحلوة</p>
-    <p>الله يعطيكي ليرضيكي وينولك الي في بالك</p>
-    <div class="signoff">بحبك كتير، كل سنة وانتي سالمة 💕</div>
+
+    <h2>كل عام وانتِ بألف خير كوكو</h2>
+    <div class="title-divider"><span></span><i>✦</i><span></span></div>
+
+    <p>اختي وحبيبة قلبي، كل عام وانتِ بخير ومحققة كل إشي ببالك.</p>
+    <p>سنين السعادة ترافقك بدربك، انتِ وعيلتك الحلوة.</p>
+    <p>الله يعطيكي يلي يرضيكي، وينولك يلي في بالك.</p>
+    <!-- <p> بحب ب</p> -->
+
+    <div class="signoff">بحبك كتير، كل سنة وانتِ سالمة 💕</div>
   </div>
 </section>
 
-<!-- <p class="footer-note">صُنع بمحبة لأجلك 🎉</p> -->
+<p class="footer-note">✦ صُنع بمحبة لأجلك ✦</p>
+
 <script>
-  const colors = ['#FF4D8D', '#FFC93C', '#42C6FF', '#9B5DE5', '#FF9F1C'];
+  // Confetti
+  const colors = ['#FF4D8D', '#FFC93C', '#42C6FF', '#9B5DE5', '#D4AF37'];
   const confettiContainer = document.getElementById('confetti-container');
   const confettiCount = window.innerWidth < 500 ? 35 : 60;
   for(let i=0;i<confettiCount;i++){
@@ -157,7 +250,8 @@
     confettiContainer.appendChild(el);
   }
 
-  const balloonColors = ['#FF4D8D', '#42C6FF', '#9B5DE5', '#FFC93C', '#FF9F1C'];
+  // Balloons
+  const balloonColors = ['#FF4D8D', '#42C6FF', '#9B5DE5', '#FFC93C', '#D4AF37'];
   const balloonsWrap = document.getElementById('balloons');
   const balloonCount = window.innerWidth < 500 ? 5 : 8;
   for(let i=0;i<balloonCount;i++){
@@ -168,6 +262,21 @@
     b.style.animationDelay = (Math.random()*9) + 's';
     b.style.animationDuration = (8 + Math.random()*4) + 's';
     balloonsWrap.appendChild(b);
+  }
+
+  // Gold sparkles scattered across the page
+  const sparkleContainer = document.getElementById('sparkle-container');
+  const sparkleCount = window.innerWidth < 500 ? 12 : 22;
+  for(let i=0;i<sparkleCount;i++){
+    const s = document.createElement('div');
+    s.className = 'sparkle';
+    s.textContent = '✦';
+    s.style.left = Math.random()*100 + 'vw';
+    s.style.top = Math.random()*100 + 'vh';
+    s.style.fontSize = (10 + Math.random()*10) + 'px';
+    s.style.animationDuration = (2 + Math.random()*3) + 's';
+    s.style.animationDelay = (Math.random()*4) + 's';
+    sparkleContainer.appendChild(s);
   }
 </script>
 
